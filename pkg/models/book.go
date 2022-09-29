@@ -4,7 +4,6 @@ import (
 	"github/jinzhu/gorm"
 
 	"github.com/jinzhu/gorm"
-	"github.com/melinaco4/book-manager/config"
 	"github.com/melinaco4/book-manager/pkg/config"
 )
 
@@ -23,4 +22,28 @@ func init() {
 	config.Connect()
 	db = config.GetDB()
 	db.AutoMigrate(&Book{})
+}
+
+func (b *Book) CreateBook() *Book {
+	db.NewRecord(b)
+	db.Create(&b)
+	return b
+}
+
+func GetAllBooks() []Book {
+	var Books []Book
+	db.Find(&Books)
+	return Books
+}
+
+func GetBookById(Id int64) (*Book, *gorm.DB) {
+	var getBook Book
+	db := db.Where("ID=?", d).Find(&getBook)
+	return &getBook, db
+}
+
+func DeleteBook(ID int64) Book {
+	var book Book
+	db.Where("ID=?", ID).Delete(book)
+	return book
 }
