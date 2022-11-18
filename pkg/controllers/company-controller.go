@@ -36,7 +36,7 @@ func GetCompanyById(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func Createcompany(w http.ResponseWriter, r *http.Request) {
+func CreateCompany(w http.ResponseWriter, r *http.Request) {
 	CreateCompany := &models.Company{}
 	utils.ParseBody(r, CreateCompany)
 	b := CreateCompany.CreateCompany()
@@ -78,7 +78,7 @@ func UpdateCompany(w http.ResponseWriter, r *http.Request) {
 	if updateCompany.AmountofEmployees != "" {
 		companyDetails.AmountofEmployees = updateCompany.AmountofEmployees
 	}
-	if updateCompany.Registered != "" {
+	if !updateCompany.Registered {
 		companyDetails.Registered = updateCompany.Registered
 	}
 	if updateCompany.Type != "" {
