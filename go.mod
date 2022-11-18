@@ -1,4 +1,4 @@
-module github.com/melinaco4/book-manager
+module github.com/melinaco4/company-manager
 
 go 1.17
 
