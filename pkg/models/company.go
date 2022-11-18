@@ -5,8 +5,6 @@ import (
 	"github.com/melinaco4/company-manager/pkg/config"
 )
 
-//"github.com/melinaco4/book-manager/pkg/config"
-
 var db *gorm.DB
 
 type Company struct {
